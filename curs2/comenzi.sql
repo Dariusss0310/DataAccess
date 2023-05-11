@@ -75,3 +75,27 @@ SELECT SUM(bursa) AS total, an FROM student WHERE  bursa IS NOT NULL GROUP BY an
 UPDATE student set status='bursier' WHERE bursa IS NOT NULL;
 
 SELECT CONCAT(nume,' ',prenume) AS full_name, an FROM universitate.student;
+
+-- aplicatia 5
+SELECT * FROM `student` WHERE data_nastere >='1996-01-01'
+
+SELECT * FROM `student` WHERE year(data_nastere) >='1996'
+
+-- pentru a selecta intre 2 ani diferiti
+SELECT * FROM `student` WHERE year(data_nastere) >='1993' AND year(data_nastere)<='1995'
+SELECT * FROM `student` WHERE year(data_nastere) BETWEEN '1993' and '1995'
+
+SELECT * FROM profesor WHERE grad_didactic IN ('I','II')
+SELECT * FROM `cursuri` WHERE an =2 AND semestru=2
+
+SELECT * FROM `student` WHERE prenume LIKE 'ion%' OR 'ioa%'
+
+SELECT * FROM `student` WHERE DATE_FORMAT(data_nastere,'%m-%d')= '09-21'
+SELECT *,bursa*12 AS bursa_anuala FROM `student` WHERE bursa*12 >=4000
+
+SELECT * FROM `student` ORDER BY data_nastere DESC LIMIT 5, 5
+
+UPDATE didactic SET id_prof=11 WHERE id_prof=10
+
+SELECT s.nume,s.prenume, n.valoare, AVG(n.valoare) FROM `student` AS s LEFT JOIN note AS n ON s.id =n.id_student 
+WHERE s.id=111 GROUP BY s.id
